@@ -1,9 +1,8 @@
 import mechanize
 import sys
-from os import remove
 import re
 from glob import glob
-from bs4 import BeautifulSoup
+import remove
 
 def toHTML(res, name):
 	name = name + '.html'
@@ -20,11 +19,8 @@ baseURL = 'https://www.strava.com'
 response = br.open('https://strava.com/login')
 br.select_form(nr=0)
 
-email = raw_input("Podaj e-mail: ")
-haslo = raw_input("Podaj haslo: ")
-
-br.form['email'] = email
-br.form['password'] = haslo
+br.form['email'] = 'jronek3010@gmail.com'
+br.form['password'] = 'Wbmjmka96'
 
 response = br.submit()
 
@@ -53,7 +49,8 @@ if br.geturl() == 'https://www.strava.com/dashboard':
 			t = br.retrieve(tcx, str(i)+'.tcx')
 			i += 1
 
-	os.remove(glob('*.tcx'))
+	remove.delTcx()
+
 
 
 else:
