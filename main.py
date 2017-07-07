@@ -1,7 +1,6 @@
 import mechanize
 import sys
 import re
-from glob import glob
 import remove
 
 def toHTML(res, name):
@@ -19,21 +18,18 @@ baseURL = 'https://www.strava.com'
 response = br.open('https://strava.com/login')
 br.select_form(nr=0)
 
-br.form['email'] = 'jronek3010@gmail.com'
-br.form['password'] = 'Wbmjmka96'
+email = raw_input("Podaj email: ")
+haslo = raw_input("Podaj haslo: ")
+
+br.form['email'] = email
+br.form['password'] = haslo
 
 response = br.submit()
 
 if br.geturl() == 'https://www.strava.com/dashboard':
 	print "Logowanie sie powiodlo"
-	"""
-	with open('st.html', 'w') as f:
-		f.write(response.read())
-	"""
 
 	response == br.open('https://www.strava.com/athlete/training')
-
-	to_download = []
 	ile = int(raw_input("Ile aktywnosci chcesz pobrac?"))
 
 	i = 0
