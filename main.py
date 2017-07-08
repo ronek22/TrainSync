@@ -30,20 +30,16 @@ if br.geturl() == 'https://www.strava.com/dashboard':
 	print "Logowanie sie powiodlo"
 
 	response == br.open('https://www.strava.com/athlete/training')
-	ile = int(raw_input("Ile aktywnosci chcesz pobrac?"))
-
+	ile = int(raw_input("Ile aktywnosci chcesz pobrac? (max = 10)"))
 	i = 0
-	for link in br.links():
+	for link in br.links(url_regex="^\/activities\/\d{1,10}$"):
 		if i == ile:
 			break
 
-		x=re.match(r'^\/activities\/\d{1,10}$', link.url)
-
-		if str(x) != 'None':
-			tcx = baseURL+link.url+'/export_tcx'
-			print "Pobieram "+str(i+1)+" aktywnosc"
-			t = br.retrieve(tcx, str(i)+'.tcx')
-			i += 1
+		tcx = baseURL+link.url+'/export_tcx'
+		print "Pobieram "+str(i+1)+" aktywnosc"
+		t = br.retrieve(tcx, str(i)+'.tcx')
+		i += 1
 
 	remove.delTcx()
 
