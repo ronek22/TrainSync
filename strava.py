@@ -1,7 +1,6 @@
 import mechanize
 import sys
 import re
-import remove
 import getpass
 
 def toHTML(res, name):
@@ -16,15 +15,15 @@ br = mechanize.Browser()
 # some useful base string
 baseURL = 'https://www.strava.com'
 
-email = raw_input("Podaj email: ")
-haslo = getpass.getpass("Podaj haslo: ")
+userStr = raw_input("Podaj email: ")
+passStr = getpass.getpass("Podaj haslo: ")
 
 response = br.open('https://strava.com/login')
 br.select_form(nr=0)
 
 
-br.form['email'] = email
-br.form['password'] = haslo
+br.form['email'] = userStr
+br.form['password'] = passStr
 
 response = br.submit()
 
@@ -49,3 +48,4 @@ if br.geturl() == 'https://www.strava.com/dashboard':
 
 else:
 	print "Logowanie nie udane"
+	exit(1)
