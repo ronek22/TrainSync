@@ -1,2 +1,4 @@
 # ignore compilation files
 *.pyc
+*.tcx
+*.gpx
