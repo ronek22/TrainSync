@@ -15,8 +15,11 @@ if count == 0:
     exit(1)
 
 
-userEnd = raw_input("Podaj email: ")
-passwdEnd = getpass.getpass("Podaj haslo: ")
+
+f = open('client.secret').readlines()
+userEnd,passwdEnd = f[1].strip().split(',')
+# userEnd = raw_input("Podaj email: ")
+# passwdEnd = getpass.getpass("Podaj haslo: ")
 
 
 browser = webdriver.Firefox()
