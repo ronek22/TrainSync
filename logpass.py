@@ -1,6 +1,9 @@
 import getpass
 import os
 
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
 def InputLogin():
     print  "Podaj dane do konta Strava"
     print "-"*20
@@ -21,7 +24,8 @@ def Menu():
     print("1. Edytuj dane logowania")
     print("2. Synchronizuj dane")
     print("3. Zamknij")
-    choose = int(raw_input("\n> "))
+    choose = int(raw_input("\n>> "))
+    cls()
 
     if choose == 1:
         InputLogin()

@@ -6,6 +6,7 @@ import getpass
 from time import sleep
 from selenium import webdriver
 
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -18,12 +19,9 @@ if count == 0:
 
 f = open('client.secret').readlines()
 userEnd,passwdEnd = f[1].strip().split(',')
-# userEnd = raw_input("Podaj email: ")
-# passwdEnd = getpass.getpass("Podaj haslo: ")
-
 
 browser = webdriver.Firefox()
-
+browser.set_window_position(-3000,0)
 browser.get("https://www.endomondo.com/?language=EN")
 link = browser.find_element_by_class_name('header-guest-login-link')
 link.click()
@@ -37,6 +35,7 @@ mail.send_keys(userEnd)
 pswd.send_keys(passwdEnd)
 submit.click()
 
+print '{:~^30}'.format('Endomondo')
 sleep(5)
 if browser.current_url != "https://www.endomondo.com/home":
     print "Logowanie nie udane"
@@ -46,32 +45,33 @@ if browser.current_url != "https://www.endomondo.com/home":
 print "Logowanie udane"
 
 # wait until load
-sleep(10)
+sleep(5)
 i = 0
 
 while i<count:
 
     browser.find_element_by_xpath('html/body/div[2]/header/div[3]/ul/li[6]/a').click()
-    print "Importowanie pliku nr %d" % i
+    print "Importowanie pliku nr %d..." % i
 
     browser.find_element_by_class_name('fileImport').click()
-    print "Import"
     browser.switch_to_default_content()
-
+    sleep(7)
     frame = browser.find_element_by_class_name('iframed')
     browser.switch_to_frame(frame)
-    sleep(5)
+    sleep(7)
     pwd = os.getcwd()+"\\"+str(i)+".tcx"
     browser.find_element_by_xpath('//form/div[2]/div[2]/input').send_keys(pwd)
-    sleep(5)
-    browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a").click()
     sleep(7)
+    browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a").click()
+    print "Wrzucone"
+    sleep(10)
     browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a[2]").click()
-    sleep(5)
+    print "Zapisane"
+    sleep(7)
     browser.switch_to_default_content()
     i+=1
     sleep(5)
-    print "UKONCZONO"
+    print "Done\n"
 
 browser.quit()
 files.delTcx()

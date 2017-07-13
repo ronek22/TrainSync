@@ -2,6 +2,9 @@ import mechanize
 import sys
 import re
 import getpass
+import os
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 def toHTML(res, name):
 	name = name + '.html'
@@ -15,7 +18,8 @@ br = mechanize.Browser()
 # some useful base string
 baseURL = 'https://www.strava.com'
 
-ile = int(raw_input("Ile aktywnosci chcesz pobrac? (max = 10)"))
+ile = int(raw_input("Ile aktywnosci chcesz pobrac? (max = 10)\n>> "))
+cls()
 userStr,passStr =  open('client.secret').readline().strip().split(',')
 # userStr = raw_input("Podaj email: ")
 # passStr = getpass.getpass("Podaj haslo: ")
@@ -28,6 +32,7 @@ br.form['email'] = userStr
 br.form['password'] = passStr
 
 response = br.submit()
+print '{:~^30}'.format('Strava')
 
 if br.geturl() == 'https://www.strava.com/dashboard':
 	print "Logowanie udane"
@@ -39,9 +44,12 @@ if br.geturl() == 'https://www.strava.com/dashboard':
 			break
 
 		tcx = baseURL+link.url+'/export_tcx'
-		print "Pobieram "+str(i+1)+" aktywnosc"
+		print "Pobieram "+str(i+1)+" aktywnosc..."
 		t = br.retrieve(tcx, str(i)+'.tcx')
+		print "Pobrane"
 		i += 1
+
+	print "\n"
 
 else:
 	print "Logowanie nie udane"
