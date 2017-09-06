@@ -1,7 +1,6 @@
 import mechanize
 import sys
 import re
-import getpass
 import os
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -15,14 +14,12 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 br = mechanize.Browser()
 
-# some useful base string
 baseURL = 'https://www.strava.com'
 
 ile = int(raw_input("Ile aktywnosci chcesz pobrac? (max = 10)\n>> "))
 cls()
 userStr,passStr =  open('client.secret').readline().strip().split(',')
-# userStr = raw_input("Podaj email: ")
-# passStr = getpass.getpass("Podaj haslo: ")
+
 
 response = br.open('https://strava.com/login')
 br.select_form(nr=0)
@@ -49,7 +46,7 @@ if br.geturl() == 'https://www.strava.com/dashboard':
 		print "Pobrane"
 		i += 1
 
-	print "\n"
+	br.close()
 
 else:
 	print "Logowanie nie udane"

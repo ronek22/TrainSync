@@ -67,7 +67,7 @@ while i<count:
     sleep(10)
     browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a[2]").click()
     print "Zapisane"
-    sleep(7)
+    # sleep(5)
     browser.switch_to_default_content()
     i+=1
     sleep(5)

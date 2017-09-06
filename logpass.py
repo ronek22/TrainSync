@@ -1,5 +1,6 @@
 import getpass
 import os
+from files import delTcx
 
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -21,6 +22,7 @@ def InputLogin():
     secret.close()
 
 def Menu():
+    delTcx()
     print("1. Edytuj dane logowania")
     print("2. Synchronizuj dane")
     print("3. Zamknij")
