@@ -48,30 +48,30 @@ print "Logowanie udane"
 sleep(5)
 i = 0
 
+browser.find_element_by_xpath('html/body/div[2]/header/div[3]/ul/li[6]/a').click()
+
+browser.find_element_by_class_name('fileImport').click()
+browser.switch_to_default_content()
+sleep(7)
+frame = browser.find_element_by_class_name('iframed')
+browser.switch_to_frame(frame)
+sleep(7)
+
+
 while i<count:
-
-    browser.find_element_by_xpath('html/body/div[2]/header/div[3]/ul/li[6]/a').click()
     print "Importowanie pliku nr %d..." % i
-
-    browser.find_element_by_class_name('fileImport').click()
-    browser.switch_to_default_content()
-    sleep(7)
-    frame = browser.find_element_by_class_name('iframed')
-    browser.switch_to_frame(frame)
-    sleep(7)
     pwd = os.getcwd()+"\\"+str(i)+".tcx"
     browser.find_element_by_xpath('//form/div[2]/div[2]/input').send_keys(pwd)
     sleep(7)
     browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a").click()
-    print "Wrzucone"
     sleep(10)
-    browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a[2]").click()
-    print "Zapisane"
-    # sleep(5)
-    browser.switch_to_default_content()
+    if i == count-1:
+        browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a[2]").click()
+    else:
+        browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a[1]").click()
     i+=1
-    sleep(5)
-    print "Done\n"
+
 
 browser.quit()
+print "Importowanie powiodlo sie"
 files.delTcx()

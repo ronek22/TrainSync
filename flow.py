@@ -14,13 +14,6 @@ ACTIVITIES_URL = "{}/training/getCalendarEvents".format(FLOW_URL)
 logger = logging.getLogger(__name__)
 
 
-# TODO: look into this url for gathering training data:
-#    https://flow.polar.com/training/analysis/<id>/range/data
-#    https://flow.polar.com/training/analysis/71760805/range/data
-# TODO: look into this url for gathering activity data:
-#    https://flow.polar.com/activity/data/<end>/<start>
-#    eg: https://flow.polar.com/activity/data/30.3.2015/10.5.2015
-
 class FlowClient(object):
 
     """Interact with the (unofficial) Polar Flow API."""
@@ -100,8 +93,6 @@ class Activity(object):
 
         """
         logging.debug("Fetching TCX file for %s", self.data['url'])
-        # https://flow.polar.com/api/export/training/tcx/1628254522
-        # https://flow.polar.com/api/export/training/tcx/1718507404?compress=true
         idActivity = filter(str.isdigit,str(self.data['url']))
         tcx_url = FLOW_URL + '/api/export/training/tcx/' + idActivity + '?compress=true'
 
@@ -111,13 +102,7 @@ class Activity(object):
             namelist = tcx_zip.namelist()
             assert len(namelist) == 1, "Expected only one item in zip"
             tcx_name = tcx_zip.namelist()[0]
-            # FIXME: should this return something other than a raw string?
-            #   * parsed xml?
-            #   * Some custom TCX object?
-            reformat = self.data['datetime'].encode('ascii','ignore')[:-5]+'.tcx'
-            with open(tcx_name,'w') as save:
-                save.write(tcx_zip.read(tcx_name))
-            return tcx_name
+            return tcx_zip.read(tcx_name)
 
 
 def _format_date(dt):
