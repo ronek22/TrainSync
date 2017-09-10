@@ -5,10 +5,6 @@ import os
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
-def toHTML(res, name):
-	name = name + '.html'
-	with open(name, 'w') as f:
-		f.write(res.read())
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
