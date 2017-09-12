@@ -17,7 +17,7 @@ def sync_data():
     count = 0
 
     for work in activities:
-        if(work.__getattr__('datetime')[:10]<=lastEndo):
+        if(work.datetime[:10]<=lastEndo):
             break
         count+=1
     return count
