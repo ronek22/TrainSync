@@ -61,8 +61,8 @@ sleep(7)
 while i<count:
     print "Importowanie pliku nr %d..." % i
     pwd = os.getcwd()+"\\"+str(i)+".tcx"
+    sleep(3)
     browser.find_element_by_xpath('//form/div[2]/div[2]/input').send_keys(pwd)
-    sleep(7)
     browser.find_element_by_xpath("//div[contains(@class,'navigation')]/a").click()
     sleep(10)
     if i == count-1:

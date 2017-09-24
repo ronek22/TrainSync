@@ -2,8 +2,8 @@ import mechanize
 import sys
 import re
 import os
-def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+from files import clears
+
 
 
 reload(sys)
@@ -13,7 +13,7 @@ br = mechanize.Browser()
 baseURL = 'https://www.strava.com'
 
 ile = int(raw_input("Ile aktywnosci chcesz pobrac? (max = 10)\n>> "))
-cls()
+clears()
 userStr,passStr =  open('client.secret').readline().strip().split(',')
 
 

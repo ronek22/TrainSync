@@ -4,6 +4,7 @@ import os
 def delTcx():
     for tcx in glob('*.tcx'):
         os.remove(tcx)
+    print "Pliki usuniete"
 
 def countTcx():
     count=0
@@ -11,3 +12,6 @@ def countTcx():
         count+=1
 
     return count
+
+def clears():
+    os.system('cls' if os.name=='nt' else 'clear')

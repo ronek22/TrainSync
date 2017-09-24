@@ -163,9 +163,9 @@ def run():
         userEnd,passwdEnd = line[1].strip().split(',')
 
     if not auth:
-        endo = EndoApi(email="jronek3010@gmail.com", password="Wbmjmka96")
+        endo = EndoApi(email=userEnd, password=passwdEnd)
         auth = endo.get_auth_token()
-        f.write(auth)
+        f.write('\n'+auth)
         f.close()
     else:
         endo = EndoApi(auth_token=auth)

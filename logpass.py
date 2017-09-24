@@ -1,9 +1,8 @@
 import getpass
 import os
-from files import delTcx
+from files import delTcx, clears
 
-def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+
 
 def InputLogin():
     print  "Podaj dane do konta Strava"
@@ -33,7 +32,7 @@ def Menu():
     print("2. Synchronizuj dane")
     print("3. Zamknij")
     choose = int(raw_input("\n>> "))
-    cls()
+    clears()
 
     if choose == 1:
         InputLogin()
