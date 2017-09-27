@@ -1,7 +1,7 @@
 import datetime
 import logging
 from zipfile import ZipFile
-from StringIO import StringIO
+from io import StringIO,BytesIO
 
 import requests
 
@@ -93,12 +93,12 @@ class Activity(object):
 
         """
         logging.debug("Fetching TCX file for %s", self.data['url'])
-        idActivity = filter(str.isdigit,str(self.data['url']))
+        idActivity = ''.join(ch for ch in str(self.data['url']) if ch.isdigit())
         tcx_url = FLOW_URL + '/api/export/training/tcx/' + idActivity + '?compress=true'
 
         resp = self.session.get(tcx_url)
         resp.raise_for_status()
-        with ZipFile(StringIO(resp.content), 'r') as tcx_zip:
+        with ZipFile(BytesIO(resp.content), 'r') as tcx_zip:
             namelist = tcx_zip.namelist()
             assert len(namelist) == 1, "Expected only one item in zip"
             tcx_name = tcx_zip.namelist()[0]

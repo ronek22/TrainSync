@@ -155,11 +155,11 @@ class EndoApi(object):
 
 def run():
     auth = None
-    f = open('client.secret','a+')
+    f = open('client.secret','r+')
     line = f.readlines()
     try:
         auth = line[3]
-    except IndexError:
+    except IndexError as e:
         userEnd,passwdEnd = line[1].strip().split(',')
 
     if not auth:

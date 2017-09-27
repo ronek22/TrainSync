@@ -6,10 +6,13 @@ import endoData
 clears()
 
 client = FlowClient()
-f = open('client.secret').readlines()
-userP, passwdP = f[2].strip().split(',')
-client.login(userP, passwdP)
-activities = client.activities()[::-1]
+
+with open('client.secret') as cred:
+    f = cred.readlines()
+    userP, passwdP = f[2].strip().split(',')
+    client.login(userP, passwdP)
+    activities = client.activities()[::-1]
+
 
 
 def sync_data():
@@ -23,23 +26,24 @@ def sync_data():
     return count
 
 
-print "1. Synchronizacja automatyczna"
-print "2. Podaj ilosc treningow do zsynchronizowania"
+print("1. Synchronizacja automatyczna")
+print("2. Podaj ilosc treningow do zsynchronizowania")
 
-choose = int(raw_input("\n>> "))
+choose = int(input("\n>> "))
 clears()
 
 if choose == 1:
     ile = sync_data()
 elif choose == 2:
-    ile = int(raw_input("Ilosc trenigow: "))
+    ile = int(input("Ilosc trenigow: "))
     clears()
 else:
-    print "Nie ma takiej opcji. Bye"
+    print("Nie ma takiej opcji. Bye")
     exit(1)
 
+print('{:~^30}'.format('PolarFlow'))
 for i in range(ile):
-    print "Plik %d.tcx pobierany" % i
+    print("Plik %d.tcx pobierany" % i)
     content = activities[i].tcx()
-    with open(str(i) + '.tcx', 'w') as save:
+    with open(str(i) + '.tcx', 'wb') as save:
         save.write(content)

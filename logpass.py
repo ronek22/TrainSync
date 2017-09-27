@@ -5,19 +5,19 @@ from files import delTcx, clears
 
 
 def InputLogin():
-    print  "Podaj dane do konta Strava"
-    print "-"*20
-    userStr = raw_input("Podaj email: ")
+    print("Podaj dane do konta Strava")
+    print("-"*20)
+    userStr = input("Podaj email: ")
     passwdStr = getpass.getpass("Podaj haslo: ")
 
-    print "\nPodaj dane do konta Endomondo"
-    print "-"*20
-    userEnd = raw_input("Podaj email: ")
+    print("\nPodaj dane do konta Endomondo")
+    print("-"*20)
+    userEnd = input("Podaj email: ")
     passwdEnd = getpass.getpass("Podaj haslo: ")
 
-    print "\nPodaj dane do konta PolarFlow"
-    print "-"*20
-    userP = raw_input("Podaj email: ")
+    print("\nPodaj dane do konta PolarFlow")
+    print("-"*20)
+    userP = input("Podaj email: ")
     passwdP = getpass.getpass("Podaj haslo: ")
 
     secret = open('client.secret', 'w')
@@ -31,7 +31,7 @@ def Menu():
     print("1. Edytuj dane logowania")
     print("2. Synchronizuj dane")
     print("3. Zamknij")
-    choose = int(raw_input("\n>> "))
+    choose = int(input("\n>> "))
     clears()
 
     if choose == 1:
@@ -39,7 +39,7 @@ def Menu():
     elif choose == 2:
         pass
     else:
-        print "Do zobaczenia  :)"
+        print("Do zobaczenia  :)")
         exit(1)
 
 if os.stat('client.secret').st_size == 0:
