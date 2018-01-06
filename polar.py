@@ -1,4 +1,5 @@
 import os
+import config
 from flow import FlowClient
 from files import clears
 import endoData
@@ -29,7 +30,7 @@ def sync_data():
 print("1. Synchronizacja automatyczna")
 print("2. Podaj ilosc treningow do zsynchronizowania")
 
-choose = int(input("\n>> "))
+choose = 1 if config.automate else int(input("\n>> "))
 clears()
 
 if choose == 1:

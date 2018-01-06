@@ -26,7 +26,7 @@ userEnd, passwdEnd = f[1].strip().split(',')
 
 
 browser = webdriver.Firefox()
-browser.set_window_position(-3000, 0)
+# browser.set_window_position(-3000, 0)
 wait = WebDriverWait(browser, 60)
 
 browser.get("https://www.endomondo.com/?language=EN")
@@ -44,14 +44,14 @@ submit = wait.until(EC.element_to_be_clickable(
     (By.XPATH, "//button[contains(text(),'Log In')]")))
 submit.click()
 
-url = wait.until(EC.url_to_be(url='https://www.endomondo.com/home'))
-print('{:~^30}'.format('Endomondo'))
-if not url:
-    print("Logowanie nie udane")
-    files.delTcx()
-    browser.quit()
-    exit(-1)
-print("Logowanie udane")
+# url = wait.until(EC.url_to_be(url='https://www.endomondo.com/home'))
+# print('{:~^30}'.format('Endomondo'))
+# if not url:
+#    print("Logowanie nie udane")
+#    files.delTcx()
+#    browser.quit()
+#    exit(-1)
+# print("Logowanie udane")
 i = 0
 
 

@@ -3,7 +3,7 @@ import platform
 import uuid
 import socket
 import json
-
+import logging
 __title__ = 'strava2endomondo'
 __version__ = '0.5'
 URL_AUTHENTICATE = 'https://api.mobile.endomondo.com/mobile/auth'

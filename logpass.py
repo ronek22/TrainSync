@@ -22,7 +22,7 @@ def InputLogin():
 
     secret = open('client.secret', 'w')
     secret.write(userStr+","+passwdStr+'\n')
-    secret.write(userEnd+","+passwdStr+'\n')
+    secret.write(userEnd+","+passwdEnd+'\n')
     secret.write(userP+","+passwdP)
     secret.close()
 
