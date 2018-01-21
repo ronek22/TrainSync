@@ -56,6 +56,8 @@ i = 0
 
 
 clickable(wait, 'html/body/div[2]/header/div[3]/ul/li[6]/a')
+element = wait.until(EC.element_to_be_clickable((By.XPATH, 'html/body/div[2]/header/div[3]/ul/li[6]/a')))
+element.click()
 
 element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'fileImport')))
 element.click()
