@@ -7,17 +7,17 @@ from files import delTcx, clears
 def InputLogin():
     print("Podaj dane do konta Strava")
     print("-"*20)
-    userStr = input("Podaj email: ")
+    userStr = raw_input("Podaj email: ")
     passwdStr = getpass.getpass("Podaj haslo: ")
 
     print("\nPodaj dane do konta Endomondo")
     print("-"*20)
-    userEnd = input("Podaj email: ")
+    userEnd = raw_input("Podaj email: ")
     passwdEnd = getpass.getpass("Podaj haslo: ")
 
     print("\nPodaj dane do konta PolarFlow")
     print("-"*20)
-    userP = input("Podaj email: ")
+    userP = raw_input("Podaj email: ")
     passwdP = getpass.getpass("Podaj haslo: ")
 
     secret = open('client.secret', 'w')
@@ -31,7 +31,7 @@ def Menu():
     print("1. Edytuj dane logowania")
     print("2. Synchronizuj dane")
     print("3. Zamknij")
-    choose = int(input("\n>> "))
+    choose = int(raw_input("\n>> "))
     clears()
 
     if choose == 1:

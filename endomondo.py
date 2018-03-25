@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.keys import Keys
 
 
 def clickable(waitDriver, xpath):
@@ -54,10 +55,8 @@ submit.click()
 # print("Logowanie udane")
 i = 0
 
-
-clickable(wait, 'html/body/div[2]/header/div[3]/ul/li[6]/a')
 element = wait.until(EC.element_to_be_clickable((By.XPATH, 'html/body/div[2]/header/div[3]/ul/li[6]/a')))
-element.click()
+element.send_keys(Keys.RETURN)
 
 element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'fileImport')))
 element.click()
